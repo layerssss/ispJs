@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{506C4382-FA8A-4AE9-BA56-7236AAB2F45E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ispJs</RootNamespace>
+    <AssemblyName>ispJs</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActionAttribute.cs" />
+    <Compile Include="BullyFerry.cs" />
+    <Compile Include="DebugProvider.cs" />
+    <Compile Include="Ferry.cs" />
+    <Compile Include="GlobalLog.cs" />
+    <Compile Include="IJSoonAC.cs" />
+    <Compile Include="IJSoonRenderer.cs" />
+    <Compile Include="ISPConsole\action.htm.cs" />
+    <Compile Include="ISPConsole\actions.htm.cs" />
+    <Compile Include="ISPConsole\debuggers.htm.cs" />
+    <Compile Include="ISPConsole\Default.htm.cs" />
+    <Compile Include="ISPConsole\dependencies.htm.cs" />
+    <Compile Include="ISPConsole\variables.htm.cs" />
+    <Compile Include="ISPDebug\Default.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility.cs" />
+    <Compile Include="WebAppInfo.cs" />
+    <Compile Include="WebApplication.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ISPConsole\action.htm.isp.js" />
+    <EmbeddedResource Include="ISPConsole\actions.htm.isp.js" />
+    <EmbeddedResource Include="ISPConsole\bootstrap.css" />
+    <EmbeddedResource Include="ISPConsole\bootstrap.js" />
+    <EmbeddedResource Include="ISPConsole\debug.htm.isp.js" />
+    <EmbeddedResource Include="ISPConsole\debuggers.htm.isp.js" />
+    <EmbeddedResource Include="ISPConsole\Default.htm.isp.js" />
+    <EmbeddedResource Include="ISPConsole\dependencies.htm.isp.js" />
+    <EmbeddedResource Include="ISPConsole\Frame.master.js" />
+    <EmbeddedResource Include="ISPConsole\jquery-1.7.1.min.js" />
+    <EmbeddedResource Include="ISPConsole\variables.htm.isp.js" />
+    <EmbeddedResource Include="RuntimePages\JavascriptError.htm" />
+    <EmbeddedResource Include="RuntimeScripts\isp_runtime.js" />
+    <EmbeddedResource Include="RuntimeScripts\isp_runtime_foot.js" />
+    <EmbeddedResource Include="RuntimeScripts\isp_runtime_json.js" />
+    <EmbeddedResource Include="RuntimeScripts\isp_runtime_systemLocals.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\fastJSON\fastJSON.csproj">
+      <Project>{207E91B1-C9F8-4913-88E1-3549EF5F3273}</Project>
+      <Name>fastJSON</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Jint\Jint.csproj">
+      <Project>{C69FEA88-CBA1-41EF-9A98-0CE5E5EF134D}</Project>
+      <Name>Jint</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

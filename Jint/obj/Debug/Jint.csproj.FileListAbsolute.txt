@@ -1,0 +1,7 @@
+C:\Users\LayersSss\Desktop\MONO\ispJs\Jint\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\LayersSss\Desktop\MONO\ispJs\Jint\bin\Debug\Jint.dll
+C:\Users\LayersSss\Desktop\MONO\ispJs\Jint\bin\Debug\Jint.pdb
+C:\Users\LayersSss\Desktop\MONO\ispJs\Jint\bin\Debug\Antlr3.Runtime.dll
+C:\Users\LayersSss\Desktop\MONO\ispJs\Jint\bin\Debug\Antlr3.Runtime.pdb
+C:\Users\LayersSss\Desktop\MONO\ispJs\Jint\obj\Debug\Jint.dll
+C:\Users\LayersSss\Desktop\MONO\ispJs\Jint\obj\Debug\Jint.pdb

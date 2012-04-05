@@ -1,0 +1,56 @@
+﻿$_native_loadedJS	default.ht...
+$_native_loadJS	null
+$_native_web_Root	C:\Users\L...
+$_native_writer_write	null
+$echo	null
+$load	null
+Array	null
+Boolean	null
+Date	null
+decodeURI	null
+decodeURIComponent	null
+encodeURI	null
+encodeURIComponent	null
+Error	null
+eval	null
+EvalError	null
+Function	null
+Infinity	null
+isFinite	null
+isNaN	null
+Math	null
+NaN	null
+null	null
+Number	null
+Object	null
+parseFloat	null
+parseInt	null
+RangeError	null
+ReferenceError	null
+RegExp	null
+String	null
+SyntaxError	null
+this	null
+ToBoolean	null
+ToByte	null
+ToChar	null
+ToDateTime	null
+ToDecimal	null
+ToDouble	null
+ToInt16	null
+ToInt32	null
+ToInt64	null
+ToSByte	null
+ToSingle	null
+ToString	
+ToUInt16	
+ToUInt32	
+ToUInt64	
+TypeError	
+undefined	
+URIError 
+JSON 
+urlDecode	null
+urlEncode
+htmlDecode	null
+htmlEncode
