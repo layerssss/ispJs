@@ -3,8 +3,3 @@ C:\Users\LayersSss\Desktop\MONO\JSoonFx\fastJSON\bin\Release\fastJSON.pdb
 C:\Users\LayersSss\Desktop\MONO\JSoonFx\fastJSON\obj\Release\ResolveAssemblyReference.cache
 C:\Users\LayersSss\Desktop\MONO\JSoonFx\fastJSON\obj\Release\fastJSON.dll
 C:\Users\LayersSss\Desktop\MONO\JSoonFx\fastJSON\obj\Release\fastJSON.pdb
-C:\Users\LayersSss\Desktop\MONO\ispJs\fastJSON\bin\Release\fastJSON.dll
-C:\Users\LayersSss\Desktop\MONO\ispJs\fastJSON\bin\Release\fastJSON.pdb
-C:\Users\LayersSss\Desktop\MONO\ispJs\fastJSON\obj\Release\ResolveAssemblyReference.cache
-C:\Users\LayersSss\Desktop\MONO\ispJs\fastJSON\obj\Release\fastJSON.dll
-C:\Users\LayersSss\Desktop\MONO\ispJs\fastJSON\obj\Release\fastJSON.pdb
