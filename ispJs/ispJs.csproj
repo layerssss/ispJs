@@ -31,6 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="fastJSON, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\fastJSON.dll</HintPath>
+    </Reference>
+    <Reference Include="Jint, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Jint.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -77,16 +85,6 @@
     <EmbeddedResource Include="RuntimeScripts\isp_runtime_foot.js" />
     <EmbeddedResource Include="RuntimeScripts\isp_runtime_json.js" />
     <EmbeddedResource Include="RuntimeScripts\isp_runtime_systemLocals.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\fastJSON\fastJSON.csproj">
-      <Project>{207E91B1-C9F8-4913-88E1-3549EF5F3273}</Project>
-      <Name>fastJSON</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Jint\Jint.csproj">
-      <Project>{C69FEA88-CBA1-41EF-9A98-0CE5E5EF134D}</Project>
-      <Name>Jint</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
