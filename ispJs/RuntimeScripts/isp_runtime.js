@@ -1,4 +1,4 @@
-﻿var $= function (str) {
+﻿var $ = function (str) {
     $_native_writer_write(String(str));
 };
 var $load = function (path) {
