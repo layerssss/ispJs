@@ -20,7 +20,10 @@ namespace ispJs
         /// </summary>
         public static void HandleBeginRequest()
         {
-            
+            while (!started)
+            {
+                Thread.Sleep(200);
+            }
             var context = HttpContext.Current;
             var server = context.Server;
             var request = context.Request;
@@ -148,12 +151,16 @@ namespace ispJs
             var subPage = Info.SubPages.FirstOrDefault(tkvp => path.StartsWith(tkvp.Folder) && path.EndsWith('.' + tkvp.Extension));
             string subPagev=null;
             var ispPath = path + ".isp.js";
-            if (subPage != null)
+            if (!ispFile.Exists && subPage != null)
             {
                 ispPath = subPage.Folder + subPage.Extension + ".isp.js";
                 ispFile = new FileInfo(Info.Root + subPage.Folder.Replace('/', Utility.PathSymbol) + subPage.Extension + ".isp.js");
                 originFile = new FileInfo(Info.Root + path.Replace('/', Utility.PathSymbol));
-                subPagev=path.Remove(path.Length - subPage.Extension.Length - 1).Substring(subPage.Folder.Length);
+                subPagev = path.Remove(path.Length - subPage.Extension.Length - 1).Substring(subPage.Folder.Length);
+            }
+            else
+            {
+                subPage = null;
             }
             #endregion
 
@@ -254,7 +261,23 @@ namespace ispJs
                         {
                             js = "$('" + server.HtmlEncode(ex.Message) + "')";
                         }
-                        var writer = File.CreateText(originFile.FullName);
+                        StreamWriter writer;
+                        for (var i = 0;; i++)
+                        {
+                            try
+                            {
+                                writer = File.CreateText(originFile.FullName);
+                                break;
+                            }
+                            catch(Exception ex)
+                            {
+                                if (i > 10)
+                                {
+                                    throw (ex);
+                                }
+                                Thread.Sleep(400);
+                            }
+                        }
                         var jint = new JintEngine()
                             .AddPermission(new System.Security.Permissions.FileIOPermission(System.Security.Permissions.PermissionState.Unrestricted))
                             .SetFunction("$_native_loadJS", new Func<string, string>((str) =>
@@ -620,7 +643,7 @@ namespace ispJs
                 return;
             }
             OnConsolePageReading += new Action<string, string>(WebApplication_OnConsolePageReading);
-            started = true;
+            
             GlobalLog.Fired -= onGlobalLogFired;
             GlobalLog.Fired += onGlobalLogFired;
             Info.Root = server.MapPath("~/").TrimEnd(Utility.PathSymbol) + Utility.PathSymbol;
@@ -685,6 +708,7 @@ namespace ispJs
 
             fastJSON.JSON.Instance.UseSerializerExtension = false;
             fastJSON.JSON.Instance.ShowReadOnlyProperties = true;
+            started = true;
         }
 
         static void WebApplication_OnConsolePageReading(string arg1, string arg2)
@@ -726,7 +750,22 @@ namespace ispJs
             Info.JSMLFerry.Bully(file,"");
             try
             {
-                System.IO.File.Delete(Info.Root+file.Replace('/',Utility.PathSymbol));
+                for (var i = 0; ; i++)
+                {
+                    try
+                    {
+                        System.IO.File.Delete(Info.Root + file.Replace('/', Utility.PathSymbol));
+                        break;
+                    }
+                    catch (Exception ex)
+                    {
+                        if (i > 10)
+                        {
+                            throw (ex);
+                        }
+                        Thread.Sleep(400);
+                    }
+                }
             }
             finally
             {
@@ -745,7 +784,22 @@ namespace ispJs
             {
                 foreach (var file in Directory.GetFiles(Info.Root + folder.Replace('/', Utility.PathSymbol), '*' + suffix))
                 {
-                    System.IO.File.Delete(file);
+                    for (var i = 0; ; i++)
+                    {
+                        try
+                        {
+                            System.IO.File.Delete(file);
+                            break;
+                        }
+                        catch (Exception ex)
+                        {
+                            if (i > 10)
+                            {
+                                throw (ex);
+                            }
+                            Thread.Sleep(400);
+                        }
+                    }
                 }
             }
             finally
