@@ -360,13 +360,6 @@ namespace ispJs
 
 
 #if DEBUG
-            var str = "/// <reference path=\"/ISPReferences/" + ispPath + "\" />\r\n/*<!--*/" + parser.Left;
-            if (source != str)
-            {
-                File.WriteAllText(Info.Root + ispPath.Replace('/', Utility.PathSymbol),
-                        str);
-            }
-
             var line = 3 + tmp.Count(tc => tc == '\n');
 
             var p = parser.Position;
