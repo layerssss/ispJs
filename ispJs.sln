@@ -53,6 +53,11 @@ Global
 		{A3DC3BF9-2AA7-4776-955A-52C2072C3158}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{A3DC3BF9-2AA7-4776-955A-52C2072C3158}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = ispJs\ispJs.csproj
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
