@@ -756,14 +756,15 @@ namespace ispJs
                         {
                             throw (ex);
                         }
-                        Thread.Sleep(400);
+                        Thread.Sleep(DeletionGap / 3);
                     }
                 }
             }
             finally
             {
                 Info.JSMLFerry.FinishBullying(file,"");
-            } Thread.Sleep(500);
+            }
+            Thread.Sleep(DeletionGap);
         }
         /// <summary>
         /// Safes the delete.
