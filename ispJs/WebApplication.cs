@@ -790,7 +790,7 @@ namespace ispJs
                             {
                                 throw (ex);
                             }
-                            Thread.Sleep(400);
+                            Thread.Sleep(DeletionGap/3);
                         }
                     }
                 }
@@ -799,12 +799,16 @@ namespace ispJs
             {
                 Info.JSMLFerry.FinishBullying(folder, suffix);
             }
-            Thread.Sleep(500);
+            Thread.Sleep(DeletionGap);
         }
         /// <summary>
         /// 
         /// </summary>
         public static string LogPath;
+        /// <summary>
+        /// Make the webserver 'sleeps' certain miliseconds to prevent invalid cache, pretty smells...
+        /// </summary>
+        public static int DeletionGap;
         /// <summary>
         /// 
         /// </summary>
