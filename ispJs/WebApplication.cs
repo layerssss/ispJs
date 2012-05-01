@@ -323,12 +323,16 @@ namespace ispJs
                             writer.Flush();
                             writer.Close();
                         }
-                        catch (JintException ex)
+                        catch (Exception ex)
                         {
                             writer.Close();
-                            var jsEx = ex.InnerException as Jint.Native.JsException;
+                            var jsEx = (ex is JintException) ? ex.InnerException as Jint.Native.JsException : ex;
+#if DEBUG
                             File.WriteAllText(originFile.FullName,
                                 string.Format(Info.JSMLErrorPage, server.HtmlEncode(ex.Message).Replace("\r\n", "<br />"), server.HtmlEncode(js).Replace("\r\n", "<br />")), System.Text.Encoding.UTF8);
+#else
+                            File.Delete(originFile.FullName);
+#endif
                         }
                         var mappeds = (jint.Run("$_native_loadedJS") as string).Split('|').ToList();
                         Info.JSMLSourceCodeMapping[ispPath] = mappeds;
