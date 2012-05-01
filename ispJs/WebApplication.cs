@@ -88,7 +88,7 @@ namespace ispJs
                 {
                     foreach (var key in results.Keys)
                     {
-                        req = req.Replace("{" + key + "}",HttpUtility.UrlEncode( results[key].ToString()));
+                        req = req.Replace("{" + key + "}", HttpUtility.UrlEncode(results[key].ToString()));
                     }
                     if (req == "noref")
                     {
@@ -100,11 +100,11 @@ namespace ispJs
                     else
                     {
                         response.Clear();
-                        response.Redirect(req,true);
+                        response.Redirect(req, true);
                     }
                     return;
                 }
-                if (request.AcceptTypes!=null&&request.AcceptTypes.Contains("text/html"))
+                if (request.AcceptTypes != null && request.AcceptTypes.Contains("text/html"))
                 {
 
                     fastJSON.JSON.Instance.IndentOutput = true;
@@ -113,7 +113,7 @@ namespace ispJs
                 }
                 else
                 {
-                    if (request["callback"]!=null)//JSONP
+                    if (request["callback"] != null)//JSONP
                     {
                         response.ContentType = "text/javascript";
                         response.Write(request["callback"]);
@@ -126,7 +126,7 @@ namespace ispJs
                         response.ContentType = "application/json";
                         response.Write(fastJSON.JSON.Instance.ToJSON(results));
                     }
-                    
+
                 }
                 fastJSON.JSON.Instance.IndentOutput = false;
                 response.End();
@@ -148,15 +148,15 @@ namespace ispJs
             var originFile = new FileInfo(Info.Root + path.Replace('/', Utility.PathSymbol));
 
             #region SubPages
-            var subPage = Info.SubPages.FirstOrDefault(tkvp => path.StartsWith(tkvp.Folder) && path.EndsWith('.' + tkvp.Extension));
-            string subPagev=null;
+            var subPage = Info.SubPages.FirstOrDefault(tsub => tsub.Match(path));
+            string subPagev = null;
             var ispPath = path + ".isp.js";
             if (!ispFile.Exists && subPage != null)
             {
+                subPagev = subPage.GetValue(path);
                 ispPath = subPage.Folder + subPage.Extension + ".isp.js";
                 ispFile = new FileInfo(Info.Root + subPage.Folder.Replace('/', Utility.PathSymbol) + subPage.Extension + ".isp.js");
                 originFile = new FileInfo(Info.Root + path.Replace('/', Utility.PathSymbol));
-                subPagev = path.Remove(path.Length - subPage.Extension.Length - 1).Substring(subPage.Folder.Length);
             }
             else
             {
@@ -168,7 +168,7 @@ namespace ispJs
             {
                 var updated = false;
                 var handler = Info.Pages.LazyGet(ispPath, () => null);
-                IISPAC ac=null;
+                IISPAC ac = null;
                 try
                 {
                     ac = (IISPAC)handler;
@@ -185,7 +185,7 @@ namespace ispJs
                     catch (NotImplementedException)
                     {
                     }
-                    catch(AccessDeniedException ex)
+                    catch (AccessDeniedException ex)
                     {
                         if (ex.Redirect == null)
                         {
@@ -197,7 +197,7 @@ namespace ispJs
                         }
                         return;
                     }
-                    
+
                 }
 #if DEBUG
 #else
@@ -242,7 +242,7 @@ namespace ispJs
                             {
                                 Info.JSMLFerry.Finish(path);
                                 return;
-                            } 
+                            }
 #endif
                             finally
                             {
@@ -262,14 +262,14 @@ namespace ispJs
                             js = "$('" + server.HtmlEncode(ex.Message) + "')";
                         }
                         StreamWriter writer;
-                        for (var i = 0;; i++)
+                        for (var i = 0; ; i++)
                         {
                             try
                             {
                                 writer = File.CreateText(originFile.FullName);
                                 break;
                             }
-                            catch(Exception ex)
+                            catch (Exception ex)
                             {
                                 if (i > 10)
                                 {
@@ -288,8 +288,8 @@ namespace ispJs
                             }))
                             .SetFunction("urlEncode", new Func<string, string>(server.UrlEncode))
                             .SetFunction("urlDecode", new Func<string, string>(server.UrlDecode))
-                            .SetFunction("htmlEncode", new Func<string, string>((str)=>server.HtmlEncode(str).Replace("\r\n","<br/>")))
-                            .SetFunction("htmlDecode", new Func<string, string>((str)=>server.HtmlDecode(str).Replace("<br/>","\r\n")))
+                            .SetFunction("htmlEncode", new Func<string, string>((str) => server.HtmlEncode(str).Replace("\r\n", "<br/>")))
+                            .SetFunction("htmlDecode", new Func<string, string>((str) => server.HtmlDecode(str).Replace("<br/>", "\r\n")))
                             .SetFunction("$_native_writer_write", new Action<string>((str) => { writer.Write(str); }));
 #if DEBUG
                         var reference = Info.Root + "ISPReferences" + Utility.PathSymbol + ispPath.Replace('/', Utility.PathSymbol);
@@ -386,7 +386,7 @@ namespace ispJs
                 tmp = parser.Fetch("<!--*/", false);
                 parser.Position += 6;
                 sb.Append("$(");
-                sb.Append(fastJSON.JSON.Instance.ToJSON(tmp).Replace("{$","\");$(").Replace("$}",");$(\""));
+                sb.Append(fastJSON.JSON.Instance.ToJSON(tmp).Replace("{$", "\");$(").Replace("$}", ");$(\""));
                 sb.Append(");\r\n");
 
 #if DEBUG
@@ -456,7 +456,8 @@ namespace ispJs
             }, true);
             foreach (var m in type.GetMethods())
             {
-                if (m.IsStatic||!m.GetCustomAttributes(false).Any(to=>{
+                if (m.IsStatic || !m.GetCustomAttributes(false).Any(to =>
+                {
                     return to is ActionAttribute;
                 }))
                 {
@@ -529,7 +530,7 @@ namespace ispJs
                                 var str = request[pars[i].Name] ?? (pars[i].IsOptional ? pars[i].DefaultValue : "") as string;
                                 if (pars[i].ParameterType == typeof(Int32))
                                 {
-                                    args[i] = Convert.ToInt32(str==""?"0":str);
+                                    args[i] = Convert.ToInt32(str == "" ? "0" : str);
                                 }
                                 if (pars[i].ParameterType == typeof(Int64))
                                 {
@@ -640,7 +641,7 @@ namespace ispJs
                 return;
             }
             OnConsolePageReading += new Action<string, string>(WebApplication_OnConsolePageReading);
-            
+
             GlobalLog.Fired -= onGlobalLogFired;
             GlobalLog.Fired += onGlobalLogFired;
             Info.Root = server.MapPath("~/").TrimEnd(Utility.PathSymbol) + Utility.PathSymbol;
@@ -714,7 +715,7 @@ namespace ispJs
         static bool started = false;
         static void onGlobalLogFired(string msg, object obj)
         {
-            System.IO.File.AppendAllText(Info.Root + LogPath,  msg+"\r\n" );
+            System.IO.File.AppendAllText(Info.Root + LogPath, msg + "\r\n");
         }
         internal static WebAppInfo Info = new WebAppInfo();
         /// <summary>
@@ -744,7 +745,7 @@ namespace ispJs
         /// <param name="file">The file.</param>
         public static void SafeDelete(string file)
         {
-            Info.JSMLFerry.Bully(file,"");
+            Info.JSMLFerry.Bully(file, "");
             try
             {
                 for (var i = 0; ; i++)
@@ -766,7 +767,7 @@ namespace ispJs
             }
             finally
             {
-                Info.JSMLFerry.FinishBullying(file,"");
+                Info.JSMLFerry.FinishBullying(file, "");
             }
             Thread.Sleep(DeletionGap);
         }
@@ -795,7 +796,7 @@ namespace ispJs
                             {
                                 throw (ex);
                             }
-                            Thread.Sleep(DeletionGap/3);
+                            Thread.Sleep(DeletionGap / 3);
                         }
                     }
                 }

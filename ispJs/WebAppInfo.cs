@@ -58,6 +58,16 @@ namespace ispJs
         {
             public string Folder;
             public string Extension;
+            public bool Match(string path)
+            {
+                return path.StartsWith(this.Folder) 
+                    && path.EndsWith('.' + this.Extension)
+                    &&!this.GetValue(path).Contains("/");
+            }
+            public string GetValue(string path)
+            {
+                return path.Remove(path.Length - this.Extension.Length - 1).Substring(this.Folder.Length);
+            }
         }
 #if DEBUG
         public class ActionInfo
