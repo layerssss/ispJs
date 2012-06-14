@@ -29,3 +29,8 @@ _ReSharper*/
 [Tt]est[Rr]esult*
 *.userprefs
 *.pidb
+ispWebTest/guestbook/guestbook
+ispWebTest/*.x2
+ispWebTest/a
+*/ISPReferences/*
+*.csproj.user

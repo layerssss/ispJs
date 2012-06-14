@@ -189,11 +189,11 @@ namespace ispJs
                     {
                         if (ex.Redirect == null)
                         {
-                            response.Redirect(ErrorPath + "?message=" + server.UrlEncode(ex.Message) + (refere != null ? "&from=" + server.UrlEncode(refere.AbsolutePath) : ""));
+                            response.Redirect(ErrorPath + "?message=" + server.UrlEncode(ex.Message) + (refere != null ? "&from=" + server.UrlEncode(refere.AbsolutePath) : ""),true);
                         }
                         else
                         {
-                            response.Redirect(ErrorPath + "?message=" + server.UrlEncode(ex.Message) + (refere != null ? "&from=" + server.UrlEncode(ex.Redirect) : ""));
+                            response.Redirect(ErrorPath + "?message=" + server.UrlEncode(ex.Message) + (refere != null ? "&from=" + server.UrlEncode(ex.Redirect) : ""),true);
                         }
                         return;
                     }
